@@ -44,11 +44,11 @@ class Complex
 		// Constructor for initializing both real and img with different value
 		Complex(double, double);
 		// Addition for two complex numbers
-		Complex add(Complex);
+		Complex operator +(Complex);
 		// Subtraction for two complex numbers
-		Complex sub(Complex);
+		Complex operator -(Complex);
 		// To print a complex number
-		void print(); 
+		friend ostream& operator <<(ostream&, Complex); 
 		
 };
 
@@ -63,7 +63,7 @@ Complex::Complex(double real, double img)
 	this->img = img;
 }
 
-Complex Complex::add(Complex c)
+Complex Complex::operator +(Complex c)
 {
 	Complex temp;
 	temp.real = real + c.real;
@@ -71,7 +71,7 @@ Complex Complex::add(Complex c)
 	return temp;
 }
 
-Complex Complex::sub(Complex c)
+Complex Complex::operator -(Complex c)
 {
 	Complex temp;
 	temp.real = real - c.real;
@@ -79,9 +79,9 @@ Complex Complex::sub(Complex c)
 	return temp;
 }
 
-void Complex::print()
+ostream& operator <<(ostream &out, Complex c)
 {
-	cout << real << ((img < 0) ? " - " : " + ") << abs(img) << "i" << endl;
+	out << c.real << ((c.img < 0) ? " - " : " + ") << abs(c.img) << "i";
 }
 
 int main(int argc, char **argv)
@@ -90,15 +90,11 @@ int main(int argc, char **argv)
 	Complex c2(10.3);
 	Complex c3(34.1256, -89.452);
 	
-	c1.print();
-	c2.print();
-	c3.print();
+	c1 = c2 + c3;
+	cout << c1 << endl;
 	
-	c1 = c2.add(c3); // c2 + c3
-	c1.print();
-	
-	c1 = c2.sub(c3); // c2 - c3
-	c1.print();
+	c1 = c2 - c3;
+	cout << c1 << endl;
 	
 	return 0;
 }
