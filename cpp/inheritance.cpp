@@ -43,7 +43,7 @@ class Parent
 		}
 };
 
-class Child : public Parent
+class Child
 {
 	protected:
 		string name;
@@ -54,13 +54,13 @@ class Child : public Parent
 			cout << "Child's constructor" << endl;
 		}
 		
-		Child(string greetings, string name) : Parent(greetings)
+		Child(string name)
 		{
 			this->name = name;
 		}
 };
 
-class SubChild : public Child
+class SubChild : public Child, public Parent
 {
 	public:
 		SubChild()
@@ -68,7 +68,7 @@ class SubChild : public Child
 			cout << "SubChild's constructor" << endl;
 		}
 		
-		SubChild(string greetings, string name) : Child(greetings, name)
+		SubChild(string greetings, string name) : Child(name), Parent(greetings)
 		{
 		}
 		
