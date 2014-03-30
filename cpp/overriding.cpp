@@ -28,27 +28,27 @@ using namespace std;
 class A
 {
 	public:
-		void show()
+		virtual void show()
 		{
 			cout << "A" << endl;
 		}
 };
 
-class B : A
+class B : public A
 {
 	public:
-		void show()
+		virtual void show()
 		{
-			A::show();
+			cout << "B" << endl;
 		}
 };
 
-class C : B
+class C : public B
 {
 	public:
-		void show()
+		virtual void show()
 		{
-			B::show();
+			cout << "C" << endl;
 		}	
 };
 
@@ -56,7 +56,9 @@ int main(int argc, char **argv)
 {
 	C obj;
 	
-	obj.show();
+	A &base = obj;
+	
+	base.show(); // (*). ~ ->	
 	
 	return 0;
 }
