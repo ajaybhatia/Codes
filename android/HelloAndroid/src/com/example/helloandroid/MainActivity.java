@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
-
+	private int counter = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +30,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		TextView tv = (TextView) findViewById(R.id.textView1);
-		tv.setText("Hi!, You have clicked \'Click Me\'");
+		counter++;
+		tv.setText("You clicked " + counter + " time(s)");
 	}
 
 }
