@@ -39,10 +39,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		int num1 = Integer.parseInt(et1.getText().toString());
 		int num2 = Integer.parseInt(et2.getText().toString());
 		
-		if (v.getId() == R.id.button1) {
-			tv.setText(String.valueOf(num1 + num2));
-		} else {
-			tv.setText(String.valueOf(num1 - num2));
+		switch(v.getId()) {
+			case R.id.button1:
+				tv.setText(String.valueOf(num1 + num2));
+				break;
+				
+			case R.id.button2:
+				tv.setText(String.valueOf(num1 - num2));
+				break;
 		}
 	}
 
