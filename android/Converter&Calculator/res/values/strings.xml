@@ -7,5 +7,6 @@
     <string name="usd_to_inr">USD to INR</string>
     <string name="simple_interest">Simple Interest</string>
     <string name="btn_calculate">Calculate</string>
+    <string name="weight_settings">Weight</string>
 
 </resources>
