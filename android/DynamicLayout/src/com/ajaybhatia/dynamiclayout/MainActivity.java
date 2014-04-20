@@ -3,6 +3,7 @@ package com.ajaybhatia.dynamiclayout;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +22,10 @@ public class MainActivity extends Activity {
 		TextView textView = new TextView(this);
 		textView.setText("Dynamic Layouts");
 		layout.addView(textView);
+		
+		EditText editText = new EditText(this);
+		editText.setText("Write something here");
+		layout.addView(editText);
 	}
 
 	@Override
