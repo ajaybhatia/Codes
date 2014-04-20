@@ -1,5 +1,7 @@
 package com.ajaybhatia.dynamiclayout;
 
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+	HashMap<Integer, String> map = new HashMap<Integer, String>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +50,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			checkBoxs[i] = new CheckBox(this);
 			checkBoxs[i].setId(4000 + (i + 1));
 			checkBoxs[i].setText("CheckBox " + (i + 1));
+			map.put(4000 + (i + 1), "CheckBox " + (i + 1));
 			checkBoxs[i].setOnClickListener(this);
 			layout.addView(checkBoxs[i]);
 		}
@@ -66,7 +71,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, "You clicked a BUTTON", Toast.LENGTH_SHORT).show();
 				
 		if (v.getId() > 4000 && v.getId() <= 4010) {
-			Toast.makeText(this, "You clicked CHECKBOX " + (v.getId() - 4000), Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "You clicked " + map.get(v.getId()), Toast.LENGTH_SHORT).show();
 		}
 	}
 
