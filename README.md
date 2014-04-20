@@ -1,7 +1,7 @@
 Codes
 =====
 
-This repo contains source code of multiple languages like:
+This repo contains source code in multiple languages like:
 
 1. C++
 2. Python
