@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -25,21 +26,27 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		TextView textView = new TextView(this);
 		textView.setText("Dynamic Layouts");
+		textView.setId(1000);
 		layout.addView(textView);
 		
 		EditText editText = new EditText(this);
 		editText.setText("Write something here");
+		editText.setId(2000);
 		layout.addView(editText);
 		
 		Button button = new Button(this);
 		button.setText("Button");
+		button.setId(3000);
+		button.setOnClickListener(this);
 		layout.addView(button);
 		
 		CheckBox[] checkBoxs = new CheckBox[10];
 		
 		for (int i = 0; i < 10; i++) {
 			checkBoxs[i] = new CheckBox(this);
+			checkBoxs[i].setId(4000 + (i + 1));
 			checkBoxs[i].setText("CheckBox " + (i + 1));
+			checkBoxs[i].setOnClickListener(this);
 			layout.addView(checkBoxs[i]);
 		}
 		
@@ -55,8 +62,12 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
+		if (v.getId() == 3000)
+			Toast.makeText(this, "You clicked a BUTTON", Toast.LENGTH_SHORT).show();
+				
+		if (v.getId() > 4000 && v.getId() <= 4010) {
+			Toast.makeText(this, "You clicked CHECKBOX " + (v.getId() - 4000), Toast.LENGTH_SHORT).show();
+		}
 	}
 
 }
