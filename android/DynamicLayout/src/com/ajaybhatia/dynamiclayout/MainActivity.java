@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -31,6 +32,14 @@ public class MainActivity extends Activity {
 		Button button = new Button(this);
 		button.setText("Button");
 		layout.addView(button);
+		
+		CheckBox[] checkBoxs = new CheckBox[10];
+		
+		for (int i = 0; i < 10; i++) {
+			checkBoxs[i] = new CheckBox(this);
+			checkBoxs[i].setText("CheckBox " + (i + 1));
+			layout.addView(checkBoxs[i]);
+		}
 	}
 
 	@Override
