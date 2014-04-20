@@ -40,6 +40,8 @@ public class MainActivity extends Activity {
 			checkBoxs[i].setText("CheckBox " + (i + 1));
 			layout.addView(checkBoxs[i]);
 		}
+		
+		setContentView(scrollView);
 	}
 
 	@Override
