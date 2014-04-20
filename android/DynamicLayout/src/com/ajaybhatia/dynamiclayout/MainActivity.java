@@ -18,6 +18,9 @@ public class MainActivity extends Activity {
 		layout.setOrientation(LinearLayout.VERTICAL);
 		scrollView.addView(layout);
 		
+		TextView textView = new TextView(this);
+		textView.setText("Dynamic Layouts");
+		layout.addView(textView);
 	}
 
 	@Override
