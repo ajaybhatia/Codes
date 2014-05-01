@@ -27,14 +27,16 @@ public class XtremeCamService extends Service {
 	private SensorManager sensorManager;
 	private Sensor acclerometerSensor;
 	private Sensor proximitySensor;
+	//private Sensor linearAccelerationSensor;
 	
 	private boolean accelerometerPresent;
 	private boolean proximityPresent;
+	//private boolean linearAcclerationPresent;
 	private boolean isInPocket = false;
 	private boolean wasUp = true;
 	private boolean wasDown = false;
 	private boolean useProximity;
-	private boolean useGyroscope;
+	//private boolean useLinearAcceleration;
 	
 	private int threshold;
 	private int countUp;
@@ -56,9 +58,9 @@ public class XtremeCamService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		//SharedPreferences settings = getSharedPreferences("app_pref", 0);
-		useGyroscope = false; //settings.getBoolean("useGyroscope", false);
+		//useLinearAcceleration = false; //settings.getBoolean("useLinearAccleration", false);
 		useProximity = true;//settings.getBoolean("useProximity", true);
-		threshold = 7;//settings.getInt("threshold", 0);
+		threshold = 5;//settings.getInt("threshold", 0);
 		
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
@@ -83,14 +85,36 @@ public class XtremeCamService extends Service {
 			proximityPresent = false;
 		} 
 		
+		/*sensorList = null;
+		sensorList = sensorManager.getSensorList(Sensor.TYPE_LINEAR_ACCELERATION);
+		if (sensorList.size() > 0) {
+			Log.i(TAG, "Linear Accelerometer detected");
+			linearAcclerationPresent = true;
+			linearAccelerationSensor = sensorList.get(0);
+		} else {
+			Log.w(TAG, "No linear accelerometer detected");
+			linearAcclerationPresent = false;
+		}*/
+		
 		if (accelerometerPresent) {
+			//if (!useLinearAcceleration) {
 			Log.i(TAG, "Registering accelerometer sensor and listener");
 			sensorManager.registerListener(AccelerometerEventListener, acclerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+			//}
 		}
-		
-		if (useProximity && proximityPresent) {
-			Log.i(TAG, "Registering proximity sensor and listener");
-			sensorManager.registerListener(ProximityEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+		/*
+		if (linearAcclerationPresent) {
+			if (useLinearAcceleration) {
+				Log.i(TAG, "Registering linear accelerometer sensor and listener");
+				sensorManager.registerListener(LinearAccelerometerEventListener, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+			}
+		}
+		*/
+		if (proximityPresent) {
+			if (useProximity) {
+				Log.i(TAG, "Registering proximity sensor and listener");
+				sensorManager.registerListener(ProximityEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+			}
 		}
 		
 		PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
@@ -103,8 +127,18 @@ public class XtremeCamService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i(TAG, "Service stopped. Unregistering accelerometer listener");
-		sensorManager.unregisterListener(AccelerometerEventListener);
+		Log.i(TAG, "Service stopped. Unregistering listeners");
+		
+		if (accelerometerPresent == true /*&& !useLinearAcceleration*/) {
+			Log.i(TAG, "Unregistering accelerometer listener");
+			sensorManager.unregisterListener(AccelerometerEventListener);
+		}
+		/*
+		if (useLinearAcceleration == true && linearAcclerationPresent == true) {
+			Log.i(TAG, "Unregistering linear accelerometer listener");
+			sensorManager.unregisterListener(LinearAccelerometerEventListener);
+		}
+		*/
 		if (useProximity == true && proximityPresent == true) {
 			Log.i(TAG, "Unregistering proximity listener");
 			sensorManager.unregisterListener(ProximityEventListener);
@@ -185,7 +219,7 @@ public class XtremeCamService extends Service {
 		wasUp = true;
 		wasDown = false;
 	}
-	
+		
 	SensorEventListener AccelerometerEventListener = new SensorEventListener() {
 		
 		@Override
@@ -225,7 +259,38 @@ public class XtremeCamService extends Service {
 		@Override
 		public void onAccuracyChanged(Sensor arg0, int arg1) {}
 	};
-	
+	/*
+	SensorEventListener LinearAccelerometerEventListener = new SensorEventListener() {
+		
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			Log.i(TAG, "Linear acceleration detected, computing values");
+			float x = event.values[0];
+			Log.i(TAG, "Linear Acceleration: " + x);
+			
+			if (x > threshold) {
+				if (wasUp == false && wasDown == true) {
+					Log.i(TAG, "Turn Up");
+					countUp = countUp + 1;
+					wasUp = true;
+					wasDown = false;
+				}
+			} else if (x > -threshold) {
+				if (wasDown == false && wasUp == true) {
+					Log.i(TAG, "Turn Down");
+					countDown = countDown + 1;
+					wasUp = false;
+					wasDown = true;
+				} 
+			}
+			
+			launchCamera();
+		}
+		
+		@Override
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+	};
+	*/
 	SensorEventListener ProximityEventListener = new SensorEventListener() {
 		
 		@Override
