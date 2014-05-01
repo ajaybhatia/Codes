@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 #  inputs-variable.R
 #  
 #  Copyright 2014 Ajay Bhatia <ajay@dumb-box>

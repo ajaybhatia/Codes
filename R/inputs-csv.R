@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 #  inputs-csv.R
 #  
 #  Copyright 2014 Ajay Bhatia <ajay@dumb-box>
