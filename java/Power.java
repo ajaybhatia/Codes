@@ -18,5 +18,3 @@ public class Power {
 		System.out.println(x + " raise to power " + y + " is " + power(x, y));
 	}
 }
-
-2^0 + 2^1 + 2^2 + 2^3 + .... + 2^n
