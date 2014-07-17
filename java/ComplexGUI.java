@@ -3,6 +3,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -80,7 +81,7 @@ public class ComplexGUI extends JFrame {
 		ComplexGUI form = new ComplexGUI();
 		form.setTitle("Complex Number Calculator");
 		form.pack();
-		form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		form.setVisible(true);
 	}
 }
