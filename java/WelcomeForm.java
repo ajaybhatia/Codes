@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 public class WelcomeForm extends JFrame {
 	private JButton[] button;
@@ -9,19 +9,12 @@ public class WelcomeForm extends JFrame {
 	public WelcomeForm(String title) {
 		super(title);
 		
-		setLayout(new BorderLayout());
+		setLayout(new GridLayout(3, 3));
 
-		button = new JButton[5];
-		button[0] = new JButton("North Button");
-		button[1] = new JButton("East Button");
-		button[2] = new JButton("West Button");
-		button[3] = new JButton("South Button");
-		button[4] = new JButton("Center Button");
-
-		add(button[0], BorderLayout.NORTH);
-		add(button[1], "East");
-		add(button[2], "West");
-		add(button[3], "South");
-		add(button[4], "Center");
+		button = new JButton[9];
+		for (int i = 0; i < 9; i++) {
+			button[i] = new JButton("Button " + i);
+			add(button[i]);
+		}
 	}
 }
