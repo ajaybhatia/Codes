@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+    <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/dracula_graffle.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/dracula_graph.js"></script>
+    <script type="text/javascript">
+		window.onload = function() {
+			var g = new Graph();
+ 
+			g.addEdge("strawberry", "cherry", {directed:true, label:"St-Ch", "label-style":{"font-size":20}});
+			g.addEdge("strawberry", "apple", {directed:true});
+			g.addEdge("strawberry", "tomato", {directed:true});
+			 
+			g.addEdge("tomato", "apple", {directed:true});
+			g.addEdge("tomato", "kiwi", {directed:true});
+			 
+			g.addEdge("cherry", "apple", {directed:true});
+			g.addEdge("cherry", "kiwi", {directed:true});
+			 
+			var layouter = new Graph.Layout.Spring(g);
+			layouter.layout();
+			 
+			var renderer = new Graph.Renderer.Raphael('canvas', g, window.innerWidth, window.innerHeight);
+			renderer.draw();		
+		}	
+	</script>
+</head>
+<body>
+	<div id="canvas"></div>
+</body>
+</html>
