@@ -29,7 +29,7 @@ int main()
 	char name[20];
 	
 	printf("So, what is your name? ");
-	scanf("%s", name);
+	scanf("%[^\n]s", name);
 	
 	printf("Hi, %s!. Good to see you\n", name);
 	
