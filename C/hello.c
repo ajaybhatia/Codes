@@ -23,13 +23,15 @@
 
 
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
 	char name[20];
 	
 	printf("So, what is your name? ");
-	scanf("%[^\n]s", name);
+	fgets(name, 20, stdin);
+	name[strlen(name) - 1] = '\0';
 	
 	printf("Hi, %s!. Good to see you\n", name);
 	
