@@ -22,3 +22,38 @@
  * 
  */
 
+#include <linux/kernel.h> 						// Contains frequently used functions
+#include <linux/module.h> 						// Include all kernel modules
+#include <linux/moduleparam.h> 					// Include module_param() definition
+#include <linux/sched.h>						// Required for current->com and current->pid
+
+MODULE_LICENSE("GPL");							// Macro to specify the module license
+MODULE_AUTHOR("Ajay Bhatia <ajay@dumb-box>"); 	// Macro to specify module author
+MODULE_DESCRIPTION("First kernel module");		// Macro to specify description about module
+MODULE_VERSION("0.1");							// Macro to specify the module version
+
+static int count = 2;
+static int i = 0;
+module_param(count, int, S_IRUGO);				// Macro to take runtime argument for module
+
+
+// Module Initialization function
+static int __init hello_init(void) 
+{
+	for (i = 0; i < count; i++) {
+		printk(KERN_ALERT "This is my first kernel module\n");
+		printk(KERN_ALERT "The current running process in the system is: " \
+			"%s\" (pid %i) \n", current->comm, current->pid);
+	}
+			
+	return 0;
+}	
+
+// Module Exit function
+static void __exit hello_exit(void)
+{
+	printk(KERN_ALERT "Good bye, we are done.\n");	
+}
+
+module_init(hello_init);
+module_exit(hello_exit);
