@@ -1,0 +1,9 @@
+/.helloparams.ko.cmd
+/.helloparams.mod.o.cmd
+/.helloparams.o.cmd
+/Module.symvers
+/helloparams.ko
+/helloparams.mod.c
+/helloparams.mod.o
+/helloparams.o
+/modules.order
