@@ -3,9 +3,9 @@ var http = require("http");
 http.createServer(function(req, res) {
 	// Normalize URL by removing querystring, optional
 	// trailing slash and make it lowercase
-	var path = req.url.path(/\/?(?:\?.*)?$/, '').toLowerCase();
+	var path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
 
-	swtich (path) {
+	switch (path) {
 		case '':
 			res.writeHead(200, {'Content-Type': 'text/plain'});
 			res.end('Homepage');
