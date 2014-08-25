@@ -22,8 +22,8 @@
 #  
 
 cd /usr/src/zen-kernel
-/usr/bin/modprobed-db recall
+sudo /usr/bin/modprobed-db recall
 make localmodconfig
 make menuconfig
 #make-kpkg clean
-CONCURRENCY_LEVEL=`getconf _NPROCESSORS_ONLN` fakeroot make-kpkg --initrd --append-to-version=-ajaybhatia kernel_image kernel_headers
+sudo CONCURRENCY_LEVEL=`getconf _NPROCESSORS_ONLN` fakeroot make-kpkg --initrd --append-to-version=-ajaybhatia kernel_image kernel_headers
