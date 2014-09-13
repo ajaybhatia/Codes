@@ -29,27 +29,34 @@
 </head>
 
 <body>
-	<div data-ng-app="" ng-controller="personController">
+	<div ng-app="" ng-controller="personController">
 		<table>
 			<tr>
 				<td>First Name:</td>
-				<td><input type="text" ng-model="firstName"></td>
+				<td><input type="text" ng-model="person.firstName"></td>
 			</tr>
 			<tr>
 				<td>Last Name:</td>
-				<td><input type="text" ng-model="lastName"></td>
+				<td><input type="text" ng-model="person.lastName"></td>
 			</tr>
 		</table>
 		
 		<p>
-			Full Name: <strong>{{ firstName + " " + lastName }}</strong>
+			Full Name: <strong>{{ person.fullName() }}</strong>
 		</p>
 	</div>
 		
 	<script>
 		function personController($scope) {
-			$scope.firstName = "Ajay";
-			$scope.lastName = "Bhatia";
+			$scope.person = {
+				firstName: "Ajay",
+				lastName: "Bhatia",
+				fullName: function() {
+					var x;
+					x = $scope.person;
+					return x.firstName + " " + x.lastName;
+				}
+			};
 		}
 	</script>	
 	<script src="angular.min.js"></script>
