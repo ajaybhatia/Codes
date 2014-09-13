@@ -29,7 +29,7 @@
 
 <body>
 	<div ng-app="" ng-init="person={firstName:'Ajay',lastName:'Bhatia'}">
-		<p>The name is {{ person.firstName + " " + person.lastName }}</p>
+		<p>The name is <span ng-bind="person.firstName + ' ' + person.lastName"></span></p>
 	</div>
 		
 	<script src="angular.min.js"></script>
