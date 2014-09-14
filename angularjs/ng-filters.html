@@ -1,0 +1,72 @@
+<!--
+   ng-filters.html
+   
+   Copyright 2014 Ajay Bhatia <ajay@dumb-box>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html>
+
+<head>
+	<title>AngularJS Filters</title>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<div ng-app="" ng-controller="personController">
+		<p>The name is {{ person.firstName | uppercase }}</p>
+	</div>
+	<!--
+	<div ng-app="" ng-controller="costController">
+		<table>
+			<tr>
+				<td>Quantity:</td>
+				<td><input type="number" ng-model="quantity"></td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td><input type="number" ng-model="price"></td>
+			</tr>
+			<tr>
+				<td>Total:</td>
+				<td>{{ (quantity * price) | currency }}</td>
+			</tr>
+		</table>
+	</div>	
+	-->	
+	<script>
+		function personController($scope) {
+			$scope.person = {
+				firstName: "Ajay",
+				lastName: "Bhatia",
+				fullName: function() {
+					return $scope.person.firstName + " " + $scope.person.lastName;
+				}
+			};
+		}
+		
+		function costController($scope) {
+			$scope.quantity = 1;
+			$scope.price = 5;
+		}
+	</script>	
+	<script src="angular.min.js"></script>
+</body>
+
+</html>
