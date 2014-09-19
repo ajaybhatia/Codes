@@ -38,7 +38,7 @@ public class Series12 {
 		int oddNum = 1, evenNum = 2;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < 10; j++) {
-				if (i % 2 == 0 && oddNum % 2 != 0) {
+				if (i % 2 == 0) {
 					a[i][j] = oddNum;
 					oddNum += 2;
 				} else {
