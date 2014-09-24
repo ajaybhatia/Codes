@@ -26,12 +26,36 @@
 <head>
 	<title>Google News</title>
 	<meta charset="utf-8" />
+	<style>
+		body {
+			background-color: #aaffee;
+		}
+		
+		#content {
+			background-color: #ffffff;
+		}
+		
+		#rssdata ul.rss-items {
+			list-style-type: decimal-leading-zero;
+		}
+		
+		#rssdata ul.rss-items li {
+			padding: 10px;
+		}
+		
+		#header {
+			height: 65px;
+			background-color: #4512af;
+			color: white;
+			font-size: 1.5em;
+		}
+	</style>
 	<script src="jquery-1.4.2.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#rssdata').ready(function() {
 				$.ajax({
-					url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss',
+					url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=20&q=https://news.google.co.in/?output=rss',
 					dataType: 'jsonp',
 					success: function (data) {
 						$(data.responseData.feed.entries).each(function (index, entry) {
@@ -49,10 +73,16 @@
 </head>
 
 <body>
-	<div id="rssdata">
-		<ul class="rss-items"></ul>
-		<div class="loading">Loading RSS items...</div>
+	<div id="header">
+		<h1 align="center">Google News</h1>
 	</div>
+	<div id="content">
+		<div id="rssdata">
+			<ul class="rss-items"></ul>
+			<div class="loading">Loading RSS items...</div>
+		</div>
+	</div>
+	<div id="footer"></div>
 </body>
 
 </html>
