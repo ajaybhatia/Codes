@@ -1,0 +1,58 @@
+<!--
+   google-news.html
+   
+   Copyright 2014 Ajay Bhatia <ajay@dumb-box>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google News</title>
+	<meta charset="utf-8" />
+	<script src="jquery-1.4.2.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#rssdata').ready(function() {
+				$.ajax({
+					url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=8&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss',
+					dataType: 'jsonp',
+					success: function (data) {
+						$(data.responseData.feed.entries).each(function (index, entry) {
+							var item_html = '<li><a target="_blank" href="' + entry.link + '">' + entry.title + '</a></li>';
+							$('#rssdata ul.rss-items').append(item_html);
+						});
+						$('#rssdata div.loading').fadeOut();
+						$('#rssdata ul.rss-items').slideDown();
+					},
+					error: function () {}
+				});
+			});
+		});	
+	</script>
+</head>
+
+<body>
+	<div id="rssdata">
+		<ul class="rss-items"></ul>
+		<div class="loading">Loading RSS items...</div>
+	</div>
+</body>
+
+</html>
