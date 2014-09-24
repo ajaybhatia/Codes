@@ -26,7 +26,22 @@
 <head>
 	<title>New Feed Reader</title>
 	<meta charset="utf-8" />
-	<script src="jquery-1.4.2.min.js" type="javascript/text"></script>
+	<script src="jquery-1.4.2.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#rssdata').ready(function() {
+				var url = 'http://pipes.yahoo.com/pipes/pipe.run?_id=b5c348713f1c84193acf3723d4d148a9&_render=json&_callback=?';
+				$.getJSON(url, function(data) {
+					$(data.value.items).each(function(index, item) {
+						var html = '<li><a href="' + item.link + '">' + item.title + '</a></li>';
+						$('#rssdata ul.rss-items').append(html);
+					});
+					$('#rssdata div.loading').fadeOut();
+					$('#rssdata ul.rss-items').slideDown();
+				});
+			});
+		});	
+	</script>
 </head>
 
 <body>
