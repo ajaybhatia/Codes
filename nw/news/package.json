@@ -1,0 +1,9 @@
+{
+	"name": "yahoo-news",
+	"main": "yahoo-news.html",
+	"window": {
+		/*"toolbar": false,*/
+		"width": 500,
+		"height": 600
+	}	
+}

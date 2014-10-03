@@ -1,0 +1,54 @@
+<!--
+   yahoo-news.html
+   
+   Copyright 2014 Ajay Bhatia <ajay@dumb-box>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+   
+   
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New Feed Reader</title>
+	<meta charset="utf-8" />
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#rssdata').ready(function() {
+				var url = 'http://pipes.yahoo.com/pipes/pipe.run?_id=b5c348713f1c84193acf3723d4d148a9&_render=json&_callback=?';
+				$.getJSON(url, function(data) {
+					$(data.value.items).each(function(index, item) {
+						var html = '<li><a href="' + item.link + '">' + item.title + '</a></li>';
+						$('#rssdata ul.rss-items').append(html);
+					});
+					$('#rssdata div.loading').fadeOut();
+					$('#rssdata ul.rss-items').slideDown();
+				});
+			});
+		});	
+	</script>
+</head>
+
+<body>
+	<div id="rssdata">
+		<ul class="rss-items"></ul>
+		<div class="loading">Loading RSS items...</div>
+	</div>
+</body>
+
+</html>
