@@ -23,23 +23,81 @@
  */
 package com.ajaybhatia.fancyclock.ui;
 
+import java.util.Calendar;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 /**
  *
  * @author ajay
  */
 public class FancyClock extends Application {
+    private Arc a1;
+    private Arc a2;
+    private Arc a3;
     
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        
         Pane root = new Pane();
-        Scene scene = new Scene(root, 400, 400, Color.TRANSPARENT);
+        Scene scene = new Scene(root, 275, 275, Color.TRANSPARENT);
+        
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        Rectangle rec = new Rectangle(275, 275);
+        rec.setArcHeight(50);
+        rec.setArcWidth(50);
+        rec.setOpacity(0.5);
+
+        primaryStage.setX(Screen.getPrimary().getBounds().getWidth() - 275);
+        primaryStage.setY(0);
+        
+        root.getChildren().add(rec);        
+        
+        lauchClock(root.getChildren());
     }    
+
+    private void lauchClock(ObservableList<Node> root) {
+        a1 = new Arc(140, 140, 25, 25, 90, 0);
+        a2 = new Arc(140, 140, 75, 75, 90, 0);
+        a3 = new Arc(140, 140, 125, 125, 90, 0);
+        
+        a1.setFill(Color.TRANSPARENT);
+        a2.setFill(Color.TRANSPARENT);
+        a3.setFill(Color.TRANSPARENT);
+    
+        a1.setStroke(Color.BLUE);
+        a2.setStroke(Color.ORANGE);
+        a3.setStroke(Color.YELLOW);
+        
+        a1.setStrokeWidth(12.0);
+        a2.setStrokeWidth(12.0);
+        a3.setStrokeWidth(12.0);
+        
+        root.addAll(a1, a2, a3);
+        
+        Timeline t = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            Calendar time = Calendar.getInstance();
+            a1.setLength(-time.get(Calendar.HOUR) / 12.0 * 360.0);
+            a2.setLength(-time.get(Calendar.MINUTE) / 60.0 * 360.0);
+            a3.setLength(-time.get(Calendar.SECOND) / 60.0 * 360.0);
+        }));
+        t.setCycleCount(Animation.INDEFINITE);
+        t.play();
+    }
 }
