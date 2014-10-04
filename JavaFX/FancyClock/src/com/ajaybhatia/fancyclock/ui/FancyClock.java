@@ -55,19 +55,17 @@ public class FancyClock extends Application {
         
         Pane root = new Pane();
         Scene scene = new Scene(root, 275, 275, Color.TRANSPARENT);
-        
         primaryStage.setScene(scene);
-        primaryStage.show();
-        
+        /*
         Rectangle rec = new Rectangle(275, 275);
         rec.setArcHeight(50);
         rec.setArcWidth(50);
         rec.setOpacity(0.5);
-
+        root.getChildren().add(rec);
+        */
         primaryStage.setX(Screen.getPrimary().getBounds().getWidth() - 275);
         primaryStage.setY(0);
-        
-        root.getChildren().add(rec);        
+        primaryStage.show();        
         
         lauchClock(root.getChildren());
     }    
