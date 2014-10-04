@@ -24,6 +24,9 @@
 package com.ajaybhatia.fancyclock.ui;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -34,5 +37,9 @@ public class FancyClock extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        Pane root = new Pane();
+        Scene scene = new Scene(root, 400, 400, Color.TRANSPARENT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }    
 }
