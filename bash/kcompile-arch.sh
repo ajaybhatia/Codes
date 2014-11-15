@@ -70,7 +70,7 @@ sudo make modules_install
 sudo cp -v arch/x86/boot/bzImage /boot/vmlinuz-$KERNEL_NAME
 
 # Link compiled modules with kernel and make initramfs
-sudo mkinitcpio -k $KERNEL_NAME -c /etc/mkinitcpio.conf -g /boot/initramfs-$KERNEL_NAME.img
+sudo mkinitcpio -k `find /lib/modules/ -name *"$LOCALVERSION"* | cut -d'/' -f 4` -c /etc/mkinitcpio.conf -g /boot/initramfs-$KERNEL_NAME.img
 
 # Copy generated System.map to boot with fullkernelname
 sudo cp System.map /boot/System.map-$KERNEL_NAME
