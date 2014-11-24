@@ -50,6 +50,9 @@ def main():
 				call(['/usr/bin/notify-send', 'Kernel {} released'.format(js['releases'][i]['version']), \
 					'Downloading {} patch in ~/Downloads/Kernels/Patches Folder'.format(js['releases'][i]['version'])]) 
 				call(['wget', js['releases'][i]['patch']['full']])
+				call(['/usr/bin/notify-send', 'Kernel {} released'.format(js['releases'][i]['version']), \
+					'Downloading incremental {} patch in ~/Downloads/Kernels/Patches Folder'.format(js['releases'][i]['version'])]) 
+				call(['wget', js['releases'][i]['patch']['incremental']])
 				call(['/usr/bin/notify-send', 'Download Complete.'])	
 			else:
 				call(['/usr/bin/notify-send', 'No updates available']) 
