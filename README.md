@@ -19,9 +19,10 @@ This repo contains source code in multiple languages like:
 15. node-webkit
 16. Perl
 17. Python
-18. R
-19. Ruby on Rails
-20. Ruby
+18. Qt
+19. R
+20. Ruby on Rails
+21. Ruby
 
 More source code from other languages is in progress.
 
