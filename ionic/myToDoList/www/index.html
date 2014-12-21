@@ -20,6 +20,9 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    
+    <!-- my controller js -->
+    <script src="js/controllers.js"></script>
   </head>
   <body ng-app="starter">
 
@@ -28,10 +31,8 @@
         <h1 class="title">My ToDo List</h1>
       </ion-header-bar>
       <ion-content>
-		  <ion-list>
-			<ion-item>To buy groceries on Monday</ion-item>
-			<ion-item>Meet someone on Wednesday</ion-item>
-			<ion-item>Party on Friday!</ion-item>
+		  <ion-list ng-controller="ToDoListCtrl">
+			<ion-item ng-repeat="item in toDoListItems">{{ item.task }}</ion-item>
 		  </ion-list>
       </ion-content>
     </ion-pane>
