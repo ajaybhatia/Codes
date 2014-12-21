@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.mytodolist823974" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>myToDoList</name>
+<widget id="com.ajaybhatia.mytodolist" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>ToDo List</name>
   <description>
-        An Ionic Framework and Cordova project.
+        ToDo List Project.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="prof.ajaybhatia@gmail.com" href="http://ajaybhatia.github.io/Codes/">
+      Ajay Bhatia
     </author>
   <content src="index.html"/>
   <access origin="*"/>
