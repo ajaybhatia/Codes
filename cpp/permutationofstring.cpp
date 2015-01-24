@@ -39,7 +39,7 @@ void swap(char *a, char *b)
 
 void permute_swap(char *str, int i, int n)
 {
-	if (i == n)
+	if (i == n - 1)
 		cout << str << endl;
 	else
 	{
