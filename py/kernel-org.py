@@ -41,7 +41,7 @@ def main():
 	js = simplejson.load(urllib2.build_opener().open(req))
 	
 	for i in range(len(js['releases'])):
-		if js['releases'][i]['moniker'] == 'mainline':
+		if js['releases'][i]['moniker'] == 'stable':
 			if not os.path.isdir('/home/' + getpass.getuser() + '/Downloads/Kernels/Patches'):
 				os.mkdir('/home/' + getpass.getuser() + '/Downloads/Kernels/Patches', 0755)
 
